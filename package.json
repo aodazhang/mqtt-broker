@@ -36,7 +36,8 @@
     "eslint-plugin-promise": "^6.1.1",
     "http-server": "^14.1.1",
     "husky": "^9.0.11",
-    "lint-staged": "^15.2.2"
+    "lint-staged": "^15.2.2",
+    "mqtt": "^5.5.3"
   },
   "lint-staged": {
     "*.js": [
