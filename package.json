@@ -10,8 +10,8 @@
   },
   "scripts": {
     "start": "node ./src/index.js",
-    "start:ws": "node ./src/index-websocket.js",
-    "start:client": "http-server -p 8080 ./src",
+    "start:wss": "node ./src/index-websocket.js",
+    "start:client": "http-server -p 8080 ./src -S --cert ./certificate/cert.pem --key ./certificate/key.pem",
     "start:pm2": "pm2 start ecosystem.config.js",
     "lint": "prettier --write ./ && eslint --fix --ext .js ./",
     "commit": "git add . && git-cz",
@@ -19,8 +19,8 @@
   },
   "dependencies": {
     "aedes": "^0.51.0",
-    "dayjs": "^1.11.10",
-    "websocket-stream": "^5.5.2"
+    "aedes-server-factory": "^0.2.1",
+    "dayjs": "^1.11.10"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.3.0",

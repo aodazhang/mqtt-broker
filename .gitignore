@@ -4,7 +4,12 @@ coverage
 dist
 node_modules
 
-# Logs
+# 忽略环境配置文件
+*.local
+.env.local
+.env.*.local
+
+# 忽略日志文件
 logs
 *.log
 npm-debug.log*

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="zh-CN">
 
 <head>
@@ -33,9 +33,9 @@
 
 <body>
   <select>
-    <option value="msg1">msg1</option>
-    <option value="msg2">msg2</option>
-    <option value="msg3">msg3</option>
+    <option value="msg1">话题 1</option>
+    <option value="msg2">话题 2</option>
+    <option value="msg3">话题 3</option>
   </select>
   <input type="text" placeholder="请输入消息" />
   <button onclick="sendMessage()">发送消息</button>
@@ -46,10 +46,10 @@
 
     /**
      * 创建 mqtt 服务
-     * - 开发：ws://localhost:8083/mqtt
-     * - 生产：ws://106.15.185.226:8083/mqtt
+     * - 开发：wss://localhost:8083/mqtt
+     * - 生产：wss://106.15.185.226:8083/mqtt
      */
-    const client = mqtt.connect('ws://106.15.185.226:8083/mqtt', {
+    const client = mqtt.connect('wss://106.15.185.226:8083/mqtt', {
       username: 'admin', // broker 用户名
       password: '123456', // broker 密码
       connectTimeout: 10 * 1000, // 连接超时：30-30s
@@ -176,6 +176,9 @@
       const topic = select.value
       const input = document.querySelector('input')
       const payload = input.value
+      if (typeof payload !== 'string' || !payload.trim()) {
+        return
+      }
       input.value = ''
 
       /**
@@ -226,10 +229,10 @@
       const li = document.createElement('li')
       li.classList.add(topic)
       li.innerHTML = `【${{
-        msg1: '话题1',
-        msg2: '话题2',
-        msg3: '话题3'
-      }[topic]
+          msg1: '话题1',
+          msg2: '话题2',
+          msg3: '话题3'
+        }[topic]
         }】${payload}`
       const ul = document.querySelector('ul')
       ul.appendChild(li)

@@ -1,15 +1,14 @@
 /**
  * @description mqtt 服务
  */
-const net = require('net')
 const Aedes = require('aedes')
+const factory = require('aedes-server-factory')
 const { createLog, LOG_TYPE } = require('./log')
 
 // 实例化 aedes 对象
 const aedes = new Aedes()
 // 创建 tcp 服务
-const server = net.createServer(aedes.handle)
-
+const server = factory.createServer(aedes)
 // 启动 mqtt 服务
 server.listen(1883, () => {
   createLog({

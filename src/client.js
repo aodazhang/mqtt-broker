@@ -2,10 +2,10 @@ import mqtt from 'mqtt'
 
 /**
  * 创建 mqtt 服务
- * - 开发：ws://localhost:8083/mqtt
- * - 生产：ws://106.15.185.226:8083/mqtt
+ * - 开发：wss://localhost:8083/mqtt
+ * - 生产：wss://106.15.185.226:8083/mqtt
  */
-const client = mqtt.connect('ws://106.15.185.226:8083/mqtt', {
+const client = mqtt.connect('wss://106.15.185.226:8083/mqtt', {
   username: 'admin', // broker 用户名
   password: '123456', // broker 密码
   connectTimeout: 10 * 1000, // 连接超时：30-30s

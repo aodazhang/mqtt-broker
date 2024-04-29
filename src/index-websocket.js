@@ -1,18 +1,22 @@
 /**
  * @description mqtt 服务（websocket 协议）
  */
-const http = require('http')
-const ws = require('websocket-stream')
+const fs = require('fs')
+const path = require('path')
 const Aedes = require('aedes')
+const factory = require('aedes-server-factory')
 const { createLog, LOG_TYPE } = require('./log')
 
 // 实例化 aedes 对象
 const aedes = new Aedes()
-// 创建 http 服务
-const server = http.createServer()
-// 创建 websocket 服务
-ws.createServer({ server }, aedes.handle)
-
+// 创建 wss 服务
+const server = factory.createServer(aedes, {
+  ws: true, // 启用 websocket
+  https: {
+    cert: fs.readFileSync(path.resolve(__dirname, '../certificate/cert.pem')), // 证书
+    key: fs.readFileSync(path.resolve(__dirname, '../certificate/key.pem')) // 私钥
+  }
+})
 // 启动 mqtt 服务
 server.listen(8083, () => {
   createLog(
@@ -20,7 +24,7 @@ server.listen(8083, () => {
       type: LOG_TYPE.系统启动,
       brokerId: aedes.id,
       clientCount: aedes.connectedClients,
-      message: '服务端已启动 ws://localhost:8083/mqtt'
+      message: '服务端已启动 wss://localhost:8083/mqtt'
     },
     true
   )
