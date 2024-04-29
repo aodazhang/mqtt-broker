@@ -4,10 +4,12 @@
 
 ## 一.开始
 
-个人服务器部署的 mqtt broker 访问地址如下：
+个人部署的 mqtt broker 访问地址如下：
 
 - mqtt 协议：mqtt://106.15.185.226:1883
 - websocket 协议：ws://106.15.185.226:8083/mqtt
+
+可通过在线 [client](http://106.15.185.226/mqtt-client) 体验。
 
 ## 二.脚本指令
 
