@@ -20,13 +20,6 @@ const LOG_TYPE = {
 
 /** 日志文件夹 */
 const logPath = path.resolve(__dirname, '../logs')
-/** 当前日志文件 */
-const logFile = path.join(logPath, `mqtt_${dayjs().format('YYYY-MM-DD')}.log`)
-/** 当前日志文件（websocket 协议） */
-const logWsFile = path.join(
-  logPath,
-  `mqtt_ws_${dayjs().format('YYYY-MM-DD')}.log`
-)
 
 /**
  * 创建日志
@@ -35,8 +28,6 @@ const logWsFile = path.join(
  * @returns 无
  */
 function createLog(params, isWs) {
-  !fs.existsSync(logPath) && fs.mkdirSync(logPath)
-
   /**
    * 日志格式：[时间戳] [类型] <服务端 id | 客户端 id | 当前客户端链接数> 内容
    */
@@ -47,12 +38,30 @@ function createLog(params, isWs) {
   const clientCount = params.clientCount || 0
   const message = `[${time}] [${type}] <${brokerId} | ${clientId} | ${clientCount}> ${params.message}\n`
 
-  process.env.NODE_ENV !== 'production' && console.log(message)
+  /**
+   * 写入日志
+   * - websocket 协议：mqtt_ws_YYYY-MM-DD.log
+   * - mqtt 协议：mqtt_YYYY-MM-DD.log
+   */
+  !fs.existsSync(logPath) && fs.mkdirSync(logPath)
+  if (isWs === true) {
+    const logFile = path.join(
+      logPath,
+      `mqtt_ws_${dayjs().format('YYYY-MM-DD')}.log`
+    )
+    fs.writeFileSync(logFile, message, { encoding: 'utf-8', flag: 'a' })
+  } else {
+    const logFile = path.join(
+      logPath,
+      `mqtt_${dayjs().format('YYYY-MM-DD')}.log`
+    )
+    fs.writeFileSync(logFile, message, { encoding: 'utf-8', flag: 'a' })
+  }
 
-  fs.writeFileSync(isWs === true ? logWsFile : logFile, message, {
-    encoding: 'utf-8',
-    flag: 'a'
-  })
+  /**
+   * 打印日志
+   */
+  process.env.NODE_ENV !== 'production' && console.log(message)
 }
 
 module.exports = { LOG_TYPE, createLog }
