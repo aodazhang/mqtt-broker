@@ -1,11 +1,11 @@
-import mqtt from 'mqtt'
+const mqtt = require('mqtt')
 
 /**
  * 创建 mqtt 服务
- * - 开发：wss://localhost:8083/mqtt
- * - 生产：wss://106.15.185.226:8083/mqtt
+ * - 开发：mqtt://localhost:8083
+ * - 生产：mqtt://106.15.185.226:1883
  */
-const client = mqtt.connect('wss://106.15.185.226:8083/mqtt', {
+const client = mqtt.connect('mqtt://106.15.185.226:1883', {
   username: 'admin', // broker 用户名
   password: '123456', // broker 密码
   connectTimeout: 10 * 1000, // 连接超时：30-30s
@@ -125,27 +125,39 @@ client.on('message', (topic, payload, packet) => {
   })
 })
 
-/**
- * 发布消息
- * @param topic 主题
- * @param message 消息内容（可以是二进制）
- * @param opts 配置项
- * @param callback 回调函数
- * @returns 客户端 client
- */
-client.publish(
-  'msg1',
-  'hello mqtt',
-  {
-    qos: 0 // QoS 订阅级别：0-最多发一次、1-至少发一次、2-保证收一次（重要消息用 1 或 2）
-  },
-  (error, packet) => {
-    /**
-     * error：错误信息
-     * packet：数据包
-     */
-    if (error) {
-      console.log('发布消息失败', {
+setInterval(() => {
+  /**
+   * 发布消息
+   * @param topic 主题
+   * @param message 消息内容（可以是二进制）
+   * @param opts 配置项
+   * @param callback 回调函数
+   * @returns 客户端 client
+   */
+  client.publish(
+    'msg1',
+    'hello mqtt',
+    {
+      qos: 0 // QoS 订阅级别：0-最多发一次、1-至少发一次、2-保证收一次（重要消息用 1 或 2）
+    },
+    (error, packet) => {
+      /**
+       * error：错误信息
+       * packet：数据包
+       */
+      if (error) {
+        console.log('发布消息失败', {
+          time: new Date().toLocaleString(),
+          客户端id: client.options.clientId,
+          是否连接服务端: client.connected,
+          是否重连服务端: client.reconnecting,
+          client,
+          error,
+          packet
+        })
+        return
+      }
+      console.log('发布消息成功', {
         time: new Date().toLocaleString(),
         客户端id: client.options.clientId,
         是否连接服务端: client.connected,
@@ -154,16 +166,6 @@ client.publish(
         error,
         packet
       })
-      return
     }
-    console.log('发布消息成功', {
-      time: new Date().toLocaleString(),
-      客户端id: client.options.clientId,
-      是否连接服务端: client.connected,
-      是否重连服务端: client.reconnecting,
-      client,
-      error,
-      packet
-    })
-  }
-)
+  )
+}, 20 * 1000)

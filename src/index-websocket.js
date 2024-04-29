@@ -14,7 +14,8 @@ const server = factory.createServer(aedes, {
   ws: true, // 启用 websocket
   https: {
     cert: fs.readFileSync(path.resolve(__dirname, '../certificate/cert.pem')), // 证书
-    key: fs.readFileSync(path.resolve(__dirname, '../certificate/key.pem')) // 私钥
+    key: fs.readFileSync(path.resolve(__dirname, '../certificate/key.pem')), // 私钥
+    rejectUnauthorized: false // 忽略自签名证书验证
   }
 })
 // 启动 mqtt 服务

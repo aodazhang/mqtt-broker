@@ -11,7 +11,8 @@
   "scripts": {
     "start": "node ./src/index.js",
     "start:wss": "node ./src/index-websocket.js",
-    "start:client": "http-server -p 8080 ./src -S --cert ./certificate/cert.pem --key ./certificate/key.pem",
+    "start:client1": "http-server -p 8080 ./src -S --cert ./certificate/cert.pem --key ./certificate/key.pem",
+    "start:client2": "node ./src/client.js",
     "start:pm2": "pm2 start ecosystem.config.js",
     "lint": "prettier --write ./ && eslint --fix --ext .js ./",
     "commit": "git add . && git-cz",
