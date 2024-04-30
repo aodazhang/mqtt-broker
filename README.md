@@ -7,7 +7,7 @@
 个人部署的 mqtt broker 访问地址如下：
 
 - mqtt 协议：mqtt://106.15.185.226:1883
-- websocket 协议：wss://106.15.185.226:8083/mqtt
+- websocket 协议：wss://api.aodazhang.com/mqtt
 
 可通过在线 [client](https://project.aodazhang.com/mqtt-client/) 体验。
 
@@ -15,8 +15,7 @@
 
 - `npm start`：启动 mqtt broker
 - `npm run start:wss`：启动 mqtt broker（websocket 协议）
-- `npm run start:client1`：启动 mqtt web client http://localhost:8080/client.html
-- `npm run start:client1:ssl`：启动 mqtt web client https://localhost:8080/client.html
+- `npm run start:client1`：启动 mqtt web client https://localhost:8080/client.html
 - `npm run start:client2`：启动 mqtt node client
 - `npm run start:pm2`：通过 pm2 启动生产环境服务器（该指令仅执行一次，多次运行会导致 pm2 文件监听无效）
 - `npm run lint`：prettier 格式化代码 + eslint 检查代码

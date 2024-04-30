@@ -10,16 +10,18 @@ const { createLog, LOG_TYPE } = require('./log')
 // 实例化 aedes 对象
 const aedes = new Aedes()
 // 创建 wss 服务
-const options = {
-  ws: true // 启用 websocket
-}
+const options = {}
 if (process.env.NODE_ENV !== 'production') {
+  // 开发环境启用 ssl
   options.https = {
     cert: fs.readFileSync(path.resolve(__dirname, '../certificate/cert.pem')), // 证书
     key: fs.readFileSync(path.resolve(__dirname, '../certificate/key.pem')) // 私钥
   }
 }
-const server = factory.createServer(aedes, options)
+const server = factory.createServer(aedes, {
+  ws: true, // 启用 websocket
+  ...options
+})
 // 启动 mqtt 服务
 server.listen(8083, () => {
   createLog(
