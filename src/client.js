@@ -2,7 +2,7 @@ const mqtt = require('mqtt')
 
 /**
  * 创建 mqtt 服务
- * - 开发：mqtt://localhost:8083
+ * - 开发：mqtt://localhost:1883
  * - 生产：mqtt://106.15.185.226:1883
  */
 const client = mqtt.connect('mqtt://106.15.185.226:1883', {
@@ -10,7 +10,8 @@ const client = mqtt.connect('mqtt://106.15.185.226:1883', {
   password: '123456', // broker 密码
   connectTimeout: 10 * 1000, // 连接超时：30-30s
   keepalive: 60, // 单次保持连接时长：0-禁用、60-60s
-  reconnectPeriod: 10 * 1000 // 重连间隔：0-禁用、1000-1000ms
+  reconnectPeriod: 10 * 1000, // 重连间隔：0-禁用、1000-1000ms
+  rejectUnauthorized: false // 允许 SSL 自签名证书
 })
 
 // [事件]首次、重新连接成功
