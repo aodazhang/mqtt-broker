@@ -1,6 +1,6 @@
 # 忽略文件夹
 .DS_Store
-certificate
+cert
 node_modules
 
 # 忽略环境配置文件

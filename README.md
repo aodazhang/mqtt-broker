@@ -67,5 +67,5 @@ ssh-keygen -t rsa -C "aodazhang@qq.com"
 # -days: 设置证书有效期
 # -keyout: 指定私钥的输出文件名
 # -out: 指定证书的输出文件名
-openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout ./certificate/key.pem -out ./certificate/cert.pem
+openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout ./cert/key.pem -out ./cert/cert.pem
 ```

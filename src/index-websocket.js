@@ -14,8 +14,8 @@ const options = {}
 if (process.env.NODE_ENV !== 'production') {
   // 开发环境启用 ssl
   options.https = {
-    cert: fs.readFileSync(path.resolve(__dirname, '../certificate/cert.pem')), // 证书
-    key: fs.readFileSync(path.resolve(__dirname, '../certificate/key.pem')) // 私钥
+    cert: fs.readFileSync(path.resolve(__dirname, '../cert/cert.pem')), // 证书
+    key: fs.readFileSync(path.resolve(__dirname, '../cert/key.pem')) // 私钥
   }
 }
 const server = factory.createServer(aedes, {
