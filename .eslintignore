@@ -1,5 +1,4 @@
 .DS_Store
 .husky
-coverage
-dist
+certificate
 node_modules
