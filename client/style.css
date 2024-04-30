@@ -1,0 +1,66 @@
+:root {
+  --aoda-color1: #fff;
+  --aoda-color2: #333;
+  --aoda-color3: #666;
+  --aoda-color4: #aaa;
+  --aoda-color5: #f3f4f7;
+  --aoda-color6: #3b7ff3;
+  --aoda-color7: #8cb0ef;
+  --aoda-color8: #fff;
+  --aoda-color9: #fff;
+  --aoda-color10: #fff;
+  --aoda-color11: #fff;
+  --aoda-color12: #fff;
+  --aoda-color13: #fff;
+  --aoda-color14: #fff;
+  --aoda-color15: #fff;
+  --aoda-color16: #fff;
+  --aoda-color17: #fff;
+  --aoda-color18: #fff;
+  --aoda-color19: #fff;
+  --aoda-color20: #fff;
+
+  --aoda-font-family1: 'PingFangSC-Medium', 'PingFang SC', -apple-system,
+    blinkmacsystemfont, 'Helvetica Neue', helvetica, segoe ui, arial, roboto,
+    'miui', 'Hiragino Sans GB', 'Microsoft Yahei', sans-serif;
+  --aoda-font-family2: avenir-heavy, 'PingFang SC', 'Helvetica Neue', arial,
+    sans-serif;
+
+  --aoda-font-size1: 16px;
+  --aoda-font-size2: 20px;
+
+  --aoda-line-height1: normal;
+}
+
+#app {
+  max-width: 576px;
+  height: 100vh;
+}
+
+.list li {
+  padding: 8px 16px;
+  margin-bottom: 10px;
+  border-radius: 2px 8px 10px 6px;
+  word-break: break-all;
+}
+
+.list .msg1 {
+  background-color: mediumpurple;
+}
+
+.list .msg2 {
+  background-color: darkslategrey;
+}
+
+.list .msg3 {
+  background-color: brown;
+}
+
+.control {
+  height: 60px;
+}
+
+.control__select {
+  border: none;
+  outline: none;
+}

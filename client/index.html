@@ -7,39 +7,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="renderer" content="webkit" />
   <title>mqtt client</title>
-  <style>
-    * {
-      padding: 0;
-      margin: 0;
-    }
-
-    ul {
-      margin-top: 20px;
-    }
-
-    .msg1 {
-      color: brown;
-    }
-
-    .msg2 {
-      color: mediumpurple;
-    }
-
-    .msg3 {
-      color: teal;
-    }
-  </style>
+  <link rel="stylesheet" href="https://project.aodazhang.com/aoda-css/index.css" />
+  <link rel="stylesheet" href="./style.css" />
 </head>
 
-<body>
-  <select>
-    <option value="msg1">话题 1</option>
-    <option value="msg2">话题 2</option>
-    <option value="msg3">话题 3</option>
-  </select>
-  <input type="text" placeholder="请输入消息" />
-  <button onclick="sendMessage()">发送消息</button>
-  <ul></ul>
+<body ontouchstart bg-4>
+  <noscript>
+    <strong>糟糕，mqtt client 不能运行在没有开启 JavaScript 的浏览器上！</strong>
+  </noscript>
+  <div id="app" fl-c fl-ais ov-h mh-a fs-14 co-2 bg-1>
+    <ul class="list" fl-1 fl-c fl-aifs ov-a pa-24 co-1></ul>
+    <section class="control" fl-0 fl-r ph-16 sa-b bg-5 bs-3>
+      <select class="control__select" fl-0 ph-6 pv-12 br-4 fs-14 ta-c>
+        <option value="msg1">Topic1</option>
+        <option value="msg2">Topic2</option>
+        <option value="msg3">Topic3</option>
+      </select>
+      <input class="control__input" fl-1 ph-16 pv-12 mh-8 br-4 fs-14 type="text" placeholder="请输入消息" />
+      <div class="control__button" fl-0 ph-16 pv-10 br-4 ta-c co-1 bg-6 hb-7 cu-p onclick="sendMessage()">
+        发送
+      </div>
+    </section>
+  </div>
 
   <script type="module">
     import 'https://cdn.bootcdn.net/ajax/libs/mqtt/5.0.5/mqtt.js'
@@ -173,9 +162,9 @@
     })
 
     window.sendMessage = () => {
-      const select = document.querySelector('select')
+      const select = document.querySelector('.control__select')
+      const input = document.querySelector('.control__input')
       const topic = select.value
-      const input = document.querySelector('input')
       const payload = input.value
       if (typeof payload !== 'string' || !payload.trim()) {
         return
@@ -229,13 +218,8 @@
     window.addMessage = (topic, payload) => {
       const li = document.createElement('li')
       li.classList.add(topic)
-      li.innerHTML = `【${{
-        msg1: '话题1',
-        msg2: '话题2',
-        msg3: '话题3'
-      }[topic]
-        }】${payload}`
-      const ul = document.querySelector('ul')
+      li.innerHTML = `${payload}`
+      const ul = document.querySelector('.list')
       ul.appendChild(li)
     }
   </script>
